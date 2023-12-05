@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="reciclado.png" />
+  <title>Doações - Reciclopédia</title>
+  <style>
+    /* Adicione estilos aqui se necessário */
+    .doacao-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .doacao-container h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .doacao-container p {
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .doacao-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .doacao-container input,
+    .doacao-container button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .doacao-container input:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    .doacao-container button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .doacao-container button:hover {
+      background-color: #45a049;
+    }
+   
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px auto;
+      width: 50%;
+    }
+.doacao-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+  appearance: none; /* Remove a aparência padrão do sistema */
+  -webkit-appearance: none; /* Para navegadores WebKit (Safari, Chrome) */
+  -moz-appearance: none; /* Para navegadores Firefox */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6"><polygon points="6 0 0 6 12 6" style="fill:%23000"/></svg>'); 
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 12px auto;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <!--Logo-->
+  <header>
+    <img src="logo.png" alt="Logo" width="70" class="logo" />
+  </header>
+  <nav>
+      <a href="index.html">Pagina Inicial</a>
+      <a href="aboutus.html">Sobre nós</a>
+      <a href="contacts.html">Contatos</a>
+      <a href="doacao.html">Doações</a>
+
+      <div class="lixeiras">
+        <img
+          src="lixeiras-de-coleta-seletiva-3.jpg"
+          alt="lixeiras"
+          height="90px"
+        />
+        <div class="lixeiras-dropdown">
+          <a id="vidro" href="vidro.html" class="aumentar">Vidro</a><br /><br />
+          <a id="papel" href="papel.html" class="aumentar">Papel</a><br /><br />
+          <a id="metal" href="metal.html" class="aumentar">Metal</a><br /><br />
+          <a id="plastico" href="plastico.html" class="aumentar">Plástico</a>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Conteúdo da Página de Doação -->
+  <!-- Conteúdo da Página de Doação -->
+<div class="doacao-container">
+  <h1>Faça uma Doação</h1>
+  <p>Se você deseja apoiar nosso projeto, considere fazer uma doação.</p>
+  <form id="doacao-form">
+    <label for="nome">Nome:</label>
+    <input type="text" placeholder="Nome" id="nome" required />
+
+    <label for="email">E-mail:</label>
+    <input type="email" placeholder="E-mail" id="email" required />
+
+    <label for="valor">Valor em R$:</label>
+    <input type="number" placeholder="Valor em R$" id="valor" min="0" required />
+    <label for="forma-pagamento">Como você quer pagar?</label>
+    <select id="forma-pagamento" onchange="mostrarCodigo(this.value)" required>
+      <option value="">Selecione...</option>
+      <option value="pix">Pix</option>
+      <option value="cartao-credito">Cartão de Crédito</option>
+      <option value="cartao-debito">Cartão de Débito</option>
+    </select>
+
+    <!-- Espaço reservado para o QR code e o código Pix -->
+    <div id="codigo-pix" style="display: none;">
+      <h3>Seu código Pix:</h3>
+      <div id="qr-code"></div>
+      <p id="codigo-pix-texto"></p>
+    </div>
+
+    <button type="submit">Doar</button>
+  </form>
+</div>
+
+<script>
+  function mostrarCodigo(valor) {
+    const codigoPixDiv = document.getElementById('codigo-pix');
+    const codigoPixTexto = document.getElementById('codigo-pix-texto');
+    const qrCodeDiv = document.getElementById('qr-code');
+
+    // Verifica se a opção escolhida foi Pix
+    if (valor === 'pix') {
+      codigoPixDiv.style.display = 'block';
+      // Aqui você pode adicionar o código ou a lógica para gerar o QR code e o código Pix
+      // Por exemplo:
+        qrCodeDiv.innerHTML = '<img src="caminho/para/o/qr-code.png" alt="QR Code" />';
+      codigoPixTexto.textContent = 'Insira o código Pix: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX';
+    } else {
+      codigoPixDiv.style.display = 'none';
+    }
+  }
+</script>
+
+    <button type="submit">Doar</button>
+  </form>
+</div>
+
+
+  <!--Rodapé-->
+  <footer>
+    <div class="rodape">
+      <hr />
+      <br />
+      <div class="copyright">
+        <h2>Site desenvolvido com fins educacionais.</h2>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para ação do formulário de doação -->
+  <script>
+    document.getElementById('doacao-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const valor = document.getElementById('valor').value;
+
+      
+
+      alert(`Obrigado por sua doação, ${nome}! Valor: R$ ${valor}`);
+      
+    });
+  </script>
+</body>
+</html>
